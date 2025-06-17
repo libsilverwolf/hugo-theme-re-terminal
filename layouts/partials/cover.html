@@ -30,6 +30,12 @@
       {{- $cover = (.Resources.GetMatch "cover.*").RelPermalink -}}
     {{- end -}}
   {{- end -}}
+{{- else if index $ctx.Params "image" -}}
+  {{- if .Resources.GetMatch $ctx.Params.Image }}
+    {{- $cover = (.Resources.GetMatch $ctx.Params.Image).RelPermalink -}}
+  {{- else -}}
+    {{- $cover = absURL $ctx.Params.Image -}}
+  {{- end -}}
 {{- end -}}
 
 {{- if $cover -}}
